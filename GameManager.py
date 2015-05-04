@@ -34,7 +34,7 @@ bar1.fill((0,0,255))
 bar2 = bar.convert()
 bar2.fill((255,0,0))
 circ_sur = pygame.Surface((15,15))
-circ = pygame.draw.circle(circ_sur,(0,255,0),(15/2,15/2),15/2)
+circ = pygame.draw.circle(circ_sur,(0,255,0),(15//2,15//2),15//2)
 circle = circ_sur.convert()
 circle.set_colorkey((0,0,0))
 
