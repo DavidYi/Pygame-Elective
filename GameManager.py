@@ -73,6 +73,14 @@ while True:
     bar1_y += bar1_move
     bar2_y += bar2_move
     
+    if bar1_y >= 420.: 
+        bar1_y = 420.
+    elif bar1_y <= 10. : 
+        bar1_y = 10.
+    if bar2_y >= 420.: 
+        bar2_y = 420.
+    elif bar2_y <= 10.: 
+        bar2_y = 10.
 # movement of circle
     time_passed = clock.tick(30)
     time_sec = time_passed / 1000.0
