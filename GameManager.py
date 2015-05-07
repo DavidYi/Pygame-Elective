@@ -41,22 +41,22 @@ while True:
             exit()
         if event.type == KEYDOWN:
             if event.key == K_UP:
-                bar1_move = -ai_speed
-            elif event.key == K_DOWN:
-                bar1_move = ai_speed
-            if event.key == K_w:
                 bar2_move = -ai_speed
-            elif event.key == K_s:
+            elif event.key == K_DOWN:
                 bar2_move = ai_speed
+            if event.key == K_w:
+                bar1_move = -ai_speed
+            elif event.key == K_s:
+                bar1_move = ai_speed
         elif event.type == KEYUP:
             if event.key == K_UP:
-                bar1_move = 0.
+                bar2_move = 0.
             elif event.key == K_DOWN:
-                bar1_move = 0.
+                bar2_move = 0.
             if event.key == K_w:
-                bar2_move = 0.
+                bar1_move = 0.
             elif event.key == K_s:
-                bar2_move = 0.
+                bar1_move = 0.
     
     score1 = font.render(str(bar1_score), True,(255,255,255))
     score2 = font.render(str(bar2_score), True,(255,255,255))
