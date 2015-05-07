@@ -1,9 +1,8 @@
-#!/usr/bin/env python
-
 import pygame
 from pygame.locals import *
 from sys import exit
 import random
+from pygame.constants import K_w
 
 pygame.init()
 
@@ -45,11 +44,19 @@ while True:
                 bar1_move = -ai_speed
             elif event.key == K_DOWN:
                 bar1_move = ai_speed
+            if event.key == K_w:
+                bar2_move = -ai_speed
+            elif event.key == K_s:
+                bar2_move = ai_speed
         elif event.type == KEYUP:
             if event.key == K_UP:
                 bar1_move = 0.
             elif event.key == K_DOWN:
                 bar1_move = 0.
+            if event.key == K_w:
+                bar2_move = 0.
+            elif event.key == K_s:
+                bar2_move = 0.
     
     score1 = font.render(str(bar1_score), True,(255,255,255))
     score2 = font.render(str(bar2_score), True,(255,255,255))
@@ -64,6 +71,7 @@ while True:
     screen.blit(score2,(380.,210.))
 
     bar1_y += bar1_move
+    bar2_y += bar2_move
     
 # movement of circle
     time_passed = clock.tick(30)
@@ -72,6 +80,7 @@ while True:
     circle_x += speed_x * time_sec
     circle_y += speed_y * time_sec
     ai_speed = speed_circ * time_sec
+    
 #since i don't know anything about collision, ball hitting bars goes like this.
     if circle_x <= bar1_x + 10.:
         if circle_y >= bar1_y - 7.5 and circle_y <= bar1_y + 42.5:
@@ -84,7 +93,7 @@ while True:
     if circle_x < 5.:
         bar2_score += 1
         circle_x, circle_y = 320., 232.5
-        bar1_y,bar_2_y = 215., 215.
+        bar1_y,bar2_y = 215., 215.
     elif circle_x > 620.:
         bar1_score += 1
         circle_x, circle_y = 307.5, 232.5
