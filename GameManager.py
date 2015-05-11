@@ -31,6 +31,7 @@ circle_x, circle_y = 307.5, 232.5
 bar1_move, bar2_move = 0. , 0.
 speed_x, speed_y, speed_circ = 250., 250., 500.
 bar1_score, bar2_score = 0, 0
+SPEED_X, SPEED_Y = 250, 250
 # clock and font objects
 clock = pygame.time.Clock()
 font = pygame.font.SysFont("calibri", 40)
@@ -83,7 +84,7 @@ while True:
     elif bar2_y <= 10.: 
         bar2_y = 10.
 # movement of circle
-    time_passed = clock.tick(30)
+    time_passed = clock.tick(60)
     time_sec = time_passed / 1000.0
     
     circle_x += speed_x * time_sec
@@ -94,22 +95,27 @@ while True:
     if circle_x <= bar1_x + 10.:
         if circle_y >= bar1_y - 7.5 and circle_y <= bar1_y + 42.5:
             circle_x = 20.
-            speed_x = -speed_x + 100
+            speed_x = -speed_x
+            speed_x += 20
     if circle_x >= bar2_x - 15.:
         if circle_y >= bar2_y - 7.5 and circle_y <= bar2_y + 42.5:
             circle_x = 605.
-            speed_x = -speed_x + 100
+            speed_x = -speed_x
+            speed_x += -20
     if circle_x < 5.:
         bar2_score += 1
         circle_x, circle_y = 320., 232.5
         bar1_y, bar2_y = 215., 215.
+        speed_x = SPEED_X
     elif circle_x > 620.:
         bar1_score += 1
         circle_x, circle_y = 307.5, 232.5
         bar1_y, bar2_y = 215., 215.
+        speed_x = SPEED_X
     if circle_y <= 10.:
         speed_y = -speed_y
         circle_y = 10.
+ 
     elif circle_y >= 457.5:
         speed_y = -speed_y
         circle_y = 457.5
